@@ -1,0 +1,7 @@
+create transformer on CK.sUserUserProfileRead
+as
+begin
+	add parameter @PreferredCultureName nvarchar( 48 ) output;
+
+	replace single {@UserName = u.UserName} with "@UserName = u.UserName, @PreferredCultureName = u.PreferredCultureName";
+end

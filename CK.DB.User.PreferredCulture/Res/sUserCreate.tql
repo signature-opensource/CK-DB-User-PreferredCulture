@@ -1,0 +1,10 @@
+create transformer on CK.sUserCreate
+as
+begin
+	add parameter @PreferredCultureName nvarchar( 48 ) = N'en';
+
+    in single part {insert into CK.tUser}
+	begin
+		add column PreferredCultureName = @PreferredCultureName;
+	end
+end
