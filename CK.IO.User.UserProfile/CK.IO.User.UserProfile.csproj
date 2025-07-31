@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CK.IO.Auth" Version="0.0.0--05isxfy-develop" />
+    <PackageReference Include="CK.IO.Auth" Version="0.0.0--05it0jf-develop" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15">
