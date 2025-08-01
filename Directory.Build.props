@@ -32,7 +32,7 @@
   <!--</BasicDefinitions>-->
   <!--<StandardProperties>-->
   <PropertyGroup>
-    <RepositoryUrl>https://github.com/signature-opensource/CK-DB-User-UserProfile</RepositoryUrl>
+    <RepositoryUrl>https://github.com/signature-opensource/CK-DB-User-PreferredCulture</RepositoryUrl>
     <ProductName>CK</ProductName>
     <Company>Signature Code</Company>
     <Authors>Signature Code</Authors>
