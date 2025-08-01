@@ -1,35 +1,26 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36121.58
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.UserProfile", "CK.DB.User.UserProfile/CK.DB.User.UserProfile.csproj", "{073A39E7-3F58-4B7B-86F6-E5918D7624BC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.IO.User.UserProfile", "CK.IO.User.UserProfile/CK.IO.User.UserProfile.csproj", "{676F89B9-A6BA-43FC-B1FB-6F61028EC8FA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-	ProjectSection(SolutionItems) = preProject
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.UserProfile.Tests", "Tests/CK.DB.User.UserProfile.Tests/CK.DB.User.UserProfile.Tests.csproj", "{6C568B0D-9586-4A35-AC6C-C0B783839174}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.PreferredCulture", "CK.DB.User.PreferredCulture\CK.DB.User.PreferredCulture.csproj", "{04C05BE3-1E58-444E-BA4A-E9D670C2A47C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.PreferredCulture", "CK.DB.User.PreferredCulture/CK.DB.User.PreferredCulture.csproj", "{04C05BE3-1E58-444E-BA4A-E9D670C2A47C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.PreferredCulture.Tests", "Tests\CK.DB.User.PreferredCulture.Tests\CK.DB.User.PreferredCulture.Tests.csproj", "{F6CCCD37-8681-46AF-B984-11BB12404D67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.DB.User.PreferredCulture.Tests", "Tests/CK.DB.User.PreferredCulture.Tests/CK.DB.User.PreferredCulture.Tests.csproj", "{F6CCCD37-8681-46AF-B984-11BB12404D67}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.IO.User.PreferredCulture", "CK.IO.User.PreferredCulture/CK.IO.User.PreferredCulture.csproj", "{67A1071B-DA83-4E44-811A-23A4F45A5306}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CK.IO.User.PreferredCulture", "CK.IO.User.PreferredCulture\CK.IO.User.PreferredCulture.csproj", "{67A1071B-DA83-4E44-811A-23A4F45A5306}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F8070B3-1202-4E9D-97E3-AB84B8525B10}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
 		Directory.Build.props = Directory.Build.props
 		NuGet.config = NuGet.config
 		RepositoryInfo.xml = RepositoryInfo.xml
-		appveyor.yml = appveyor.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCakeBuilder", "CodeCakeBuilder/CodeCakeBuilder.csproj", "{484E57FF-04CA-282B-DF8A-95F0C8587F63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeCakeBuilder", "CodeCakeBuilder\CodeCakeBuilder.csproj", "{484E57FF-04CA-282B-DF8A-95F0C8587F63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,18 +28,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{073A39E7-3F58-4B7B-86F6-E5918D7624BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{073A39E7-3F58-4B7B-86F6-E5918D7624BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{073A39E7-3F58-4B7B-86F6-E5918D7624BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{073A39E7-3F58-4B7B-86F6-E5918D7624BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{676F89B9-A6BA-43FC-B1FB-6F61028EC8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{676F89B9-A6BA-43FC-B1FB-6F61028EC8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{676F89B9-A6BA-43FC-B1FB-6F61028EC8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{676F89B9-A6BA-43FC-B1FB-6F61028EC8FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C568B0D-9586-4A35-AC6C-C0B783839174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C568B0D-9586-4A35-AC6C-C0B783839174}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C568B0D-9586-4A35-AC6C-C0B783839174}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C568B0D-9586-4A35-AC6C-C0B783839174}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04C05BE3-1E58-444E-BA4A-E9D670C2A47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04C05BE3-1E58-444E-BA4A-E9D670C2A47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C05BE3-1E58-444E-BA4A-E9D670C2A47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,7 +49,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6C568B0D-9586-4A35-AC6C-C0B783839174} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{F6CCCD37-8681-46AF-B984-11BB12404D67} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

@@ -11,15 +11,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CK.DB.User.UserProfile\CK.DB.User.UserProfile.csproj" />
-      <ProjectReference Include="..\CK.IO.User.PreferredCulture\CK.IO.User.PreferredCulture.csproj" />
+        <PackageReference Include="CK.DB.Actor" Version="25.0.1--0011-develop" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="Microsoft.VisualStudio.Threading.Analyzers" Version="17.14.15">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
+        <ProjectReference Include="..\CK.IO.User.PreferredCulture\CK.IO.User.PreferredCulture.csproj" />
     </ItemGroup>
 
 </Project>
