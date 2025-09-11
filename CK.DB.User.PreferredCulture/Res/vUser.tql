@@ -1,4 +1,4 @@
-create transformer on CK.vUserProfile
+create transformer on CK.vUser
 as
 begin
     add column u.PreferredCultureName;
