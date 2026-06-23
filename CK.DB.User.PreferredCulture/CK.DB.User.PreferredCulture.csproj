@@ -9,7 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CK.DB.Actor" Version="28.0.2" />
-    <PackageReference Include="CK.DB.Globalization" Version="0.1.4--ci.6" />
+    <PackageReference Include="CK.DB.Globalization" Version="0.1.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CK.IO.User.PreferredCulture\CK.IO.User.PreferredCulture.csproj" />
