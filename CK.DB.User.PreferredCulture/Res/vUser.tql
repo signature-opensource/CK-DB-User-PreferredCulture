@@ -2,4 +2,5 @@ create transformer on CK.vUser
 as
 begin
     add column u.PreferredCultureName;
+    add column u.ExtendedCultureId;
 end
