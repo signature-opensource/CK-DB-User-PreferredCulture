@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace CK.DB.User.PreferredCulture;
 
 [SqlPackage( FullName = "CK.User.PreferredCulture.Package", Schema = "CK", ResourcePath = "Res" )]
-[Versions( "1.0.0, 1.1.0" )]
+[Versions( "1.0.0, 1.1.0, 2.0.0" )]
 [SqlObjectItem( "transform:sUserUserProfileRead, transform:vUser" )]
 public abstract partial class Package : SqlPackage
 {
@@ -27,19 +27,12 @@ public abstract partial class Package : SqlPackage
     public abstract Task<int> CreateUserAsync( ISqlCallContext ctx,
                                                int actorId,
                                                string userName,
-                                               string preferredCultureName );
-
-    //[CommandHandler]
-    //[SqlProcedure( "transform:sUserCreate" )]
-    //public abstract Task<IO.Actor.ICreateUserCommandResult> CreateUserAsync( ISqlCallContext ctx, [ParameterSource] ICreateUserCommand command );
-
-    [SqlProcedure( "CK.sUserPreferredCultureNameSet" )]
-    public abstract Task SetPreferredCultureNameAsync( ISqlCallContext ctx, int actorId, int userId, string preferredCultureName );
+                                               int extendedCultureId );
 
     [SqlProcedure( "CK.sUserExtendedCultureSet" )]
     public abstract Task SetExtendedCultureAsync( ISqlCallContext ctx, int actorId, int userId, int extendedCultureId );
 
     [CommandHandler]
-    [SqlProcedure( "CK.sUserPreferredCultureNameSet" )]
-    public abstract Task<ICrisBasicCommandResult> SetPreferredCultureNameAsync( ISqlCallContext ctx, [ParameterSource] ISetUserPreferredCultureCommand command );
+    [SqlProcedure( "CK.sUserExtendedCultureSet" )]
+    public abstract Task<ICrisBasicCommandResult> SetExtendedCultureAsync( ISqlCallContext ctx, [ParameterSource] ISetUserExtendedCultureCommand command );
 }

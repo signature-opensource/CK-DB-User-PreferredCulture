@@ -4,6 +4,7 @@ using CK.DB.Actor;
 using CK.IO.Actor;
 using CK.SqlServer;
 using CK.Testing;
+using Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Shouldly;
@@ -13,6 +14,9 @@ namespace CK.DB.User.PreferredCulture.Tests;
 [TestFixture]
 public class UserProfileTests
 {
+    // Value of the DF_CK_tUser_ExtendedCultureId default constraint (the "fr" culture seeded by CK.DB.Globalization).
+    const int DefaultExtendedCultureId = 210327884;
+
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     AsyncServiceScope _scope;
     CrisExecutionContext _executor;
@@ -51,42 +55,54 @@ public class UserProfileTests
         var profile = execCmd.WithResult<IO.User.PreferredCulture.IUserProfile?>().Result.ShouldNotBeNull();
         profile.UserId.ShouldBe( userId );
         profile.UserName.ShouldBe( "System" );
-        profile.PreferredCultureName.ShouldBe( "en" );
+        // The exact ExtendedCultureId of the System user depends on the install history (fresh 2.0.0 -> default 'fr',
+        // migrated from 1.1.0 -> recovered from the former PreferredCultureName). The profile read must simply return
+        // the value actually stored on the row.
+        using var ctx = new SqlStandardCallContext();
+        var stored = ctx[_userTable].QuerySingle<int>( "select ExtendedCultureId from CK.tUser where UserId = @UserId;", new { UserId = userId } );
+        profile.ExtendedCultureId.ShouldBe( stored );
+        profile.ExtendedCultureId.ShouldBeGreaterThan( 0 );
     }
 
     [Test]
-    public async Task can_create_user_with_preferredCulture_Async()
+    public async Task can_create_user_with_extendedCulture_Async()
     {
+        var otherCultureId = PickAnotherCultureId();
         var createCmd = _pocoDir.Create<IO.User.PreferredCulture.ICreateUserCommand>( c =>
         {
             c.ActorId = 1;
             c.UserName = Guid.NewGuid().ToString();
-            c.PreferredCultureName = "en";
+            c.ExtendedCultureId = otherCultureId;
         } );
         var execCreateCmd = await _executor.ExecuteRootCommandAsync( (IAbstractCommand)createCmd );
         var createRes = execCreateCmd.WithResult<ICreateUserCommandResult>().Result.ShouldNotBeNull();
         createRes.ShouldNotBeAssignableTo<ICrisResultError>();
         createRes.Success.ShouldBeTrue();
         createRes.UserIdResult.ShouldBeGreaterThan( 2 );
+
+        using var ctx = new SqlStandardCallContext();
+        var profile = await _userTable.GetUserProfileAsync<IO.User.PreferredCulture.IUserProfile>( ctx, actorId: 1, userId: createRes.UserIdResult );
+        profile.ShouldNotBeNull();
+        profile.ExtendedCultureId.ShouldBe( otherCultureId );
     }
 
     [Test]
-    public async Task can_set_user_preferredCulture_Async()
+    public async Task can_set_user_extendedCulture_Async()
     {
+        var otherCultureId = PickAnotherCultureId();
         var createCmd = _pocoDir.Create<IO.User.PreferredCulture.ICreateUserCommand>( c =>
         {
             c.ActorId = 1;
             c.UserName = Guid.NewGuid().ToString();
-            c.PreferredCultureName = "en";
         } );
         var execCreateCmd = await _executor.ExecuteRootCommandAsync( (IAbstractCommand)createCmd );
         var createRes = execCreateCmd.WithResult<ICreateUserCommandResult>().Result;
 
-        var cmd = _pocoDir.Create<IO.User.PreferredCulture.ISetUserPreferredCultureCommand>( c =>
+        var cmd = _pocoDir.Create<IO.User.PreferredCulture.ISetUserExtendedCultureCommand>( c =>
         {
             c.ActorId = 1;
             c.UserId = createRes.UserIdResult;
-            c.PreferredCultureName = "fr";
+            c.ExtendedCultureId = otherCultureId;
         } );
         var execSetCmd = await _executor.ExecuteRootCommandAsync( cmd );
         var res = execSetCmd.WithResult<ICrisBasicCommandResult>().Result;
@@ -94,6 +110,15 @@ public class UserProfileTests
         using var ctx = new SqlStandardCallContext();
         var profile = await _userTable.GetUserProfileAsync<IO.User.PreferredCulture.IUserProfile>( ctx, actorId: 1, userId: createRes.UserIdResult );
         profile.ShouldNotBeNull();
-        profile.PreferredCultureName.ShouldBe( "fr" );
+        profile.ExtendedCultureId.ShouldBe( otherCultureId );
+    }
+
+    // Picks any valid culture other than the default one.
+    int PickAnotherCultureId()
+    {
+        using var ctx = new SqlStandardCallContext();
+        return ctx[_userTable].QuerySingle<int>(
+            "select top 1 CultureId from CK.tCulture where CultureId <> @Cur order by CultureId;",
+            new { Cur = DefaultExtendedCultureId } );
     }
 }

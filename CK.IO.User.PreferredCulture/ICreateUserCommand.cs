@@ -4,6 +4,6 @@ namespace CK.IO.User.PreferredCulture;
 
 public interface ICreateUserCommand : Actor.ICreateUserCommand
 {
-    [DefaultValue( "en" )]
-    public string PreferredCultureName { get; set; }
+    [DefaultValue( 210327884 )]
+    public int ExtendedCultureId { get; set; }
 }
