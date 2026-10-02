@@ -8,8 +8,8 @@
     <EmbeddedResource Include="**\*.sql;**\*.tql;**\*.y4" Exclude="bin\**;obj\**;CodeCakeBuilder\**;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CK.DB.Actor" Version="30.0.0-juliet.0.ci.19" />
-    <PackageReference Include="CK.DB.Globalization" Version="2.0.0-juliet.0.ci.8" />
+    <PackageReference Include="CK.DB.Actor" Version="30.0.0-juliet.0.ci.20" />
+    <PackageReference Include="CK.DB.Globalization" Version="2.0.0-juliet.0.ci.9" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CK.IO.User.PreferredCulture\CK.IO.User.PreferredCulture.csproj" />
